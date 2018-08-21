@@ -15,5 +15,37 @@ namespace Test_1_简单测试
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (RetailContext context = new RetailContext())
+                {
+                    context.Persons.Add(new Person { Id = Guid.NewGuid(), Name = "wolfy1" });
+                    context.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (RetailContext context = new RetailContext())
+                {
+                    var a = context.Persons.Where(x => x.Id != Guid.Empty).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
