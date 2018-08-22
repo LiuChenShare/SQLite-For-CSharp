@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chy.SQLite", "..\..\Core\Ch
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9B282928-4F11-414C-B6C8-97C2D594D636}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test-1-简单测试-2-使用SQLiteHelper", "Test-1-简单测试-2-使用SQLiteHelper\Test-1-简单测试-2-使用SQLiteHelper.csproj", "{1E402752-8E5E-4239-8436-D411A163F4A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{351A8BA0-AB48-4BD6-B037-CA8A70FDEEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{351A8BA0-AB48-4BD6-B037-CA8A70FDEEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{351A8BA0-AB48-4BD6-B037-CA8A70FDEEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E402752-8E5E-4239-8436-D411A163F4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E402752-8E5E-4239-8436-D411A163F4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E402752-8E5E-4239-8436-D411A163F4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E402752-8E5E-4239-8436-D411A163F4A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
