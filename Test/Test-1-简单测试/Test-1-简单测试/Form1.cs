@@ -62,5 +62,31 @@ namespace Test_1_简单测试
                 throw new Exception(ex.Message);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (RetailContext context = new RetailContext())
+                {
+                    Encoding utf8 = Encoding.UTF8;
+                    var info = new b1();
+                    //var utf8String = utf8.GetBytes(textBox1.Text);
+                    //info.Value = utf8String;
+                    info.Value = textBox1.Text;
+                    context.B1.Add(info);
+                    context.SaveChanges();
+                    var result = context.B1.Where(x => x.Id == info.Id).SingleOrDefault();
+                    //if (result != null)
+                    //{
+                    //    result.ValueString = Encoding.UTF8.GetString(result.Value);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
