@@ -13,6 +13,7 @@ namespace Test_1_简单测试
         {
         }
         public DbSet<Person> Persons { set; get; }
+        public DbSet<b1> B1 { set; get; }
 
     }
 }

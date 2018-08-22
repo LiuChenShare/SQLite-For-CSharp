@@ -47,5 +47,20 @@ namespace Test_1_简单测试
                 throw new Exception(ex.Message);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (RetailContext context = new RetailContext())
+                {
+                    var a = context.B1.Where(x => x.Id != 0).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
