@@ -10,8 +10,20 @@ namespace Chy.SQLite
 {
     public class SQLiteHelper
     {
+        public static bool ExistsDBFile(string fileName)
+        {
+            string path = System.Environment.CurrentDirectory + @"/Data/";
+            string databaseFileName = path + fileName + ".db";
+            if (File.Exists(@"文件路径"))
+            {
+                //存在
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
-        /// 创建数据库文件
+        /// 创建数据库文件(直接覆盖)
         /// </summary>
         /// <param name="fileName"></param>
         public static void CreateDBFile(string fileName)
@@ -21,9 +33,14 @@ namespace Chy.SQLite
             {
                 Directory.CreateDirectory(path);
             }
-            string databaseFileName = path + fileName;
+            string databaseFileName = path + fileName + ".sqlite";
             if (!File.Exists(databaseFileName))
             {
+                SQLiteConnection.CreateFile(databaseFileName);
+            }
+            else
+            {
+                File.Delete(databaseFileName);
                 SQLiteConnection.CreateFile(databaseFileName);
             }
         }
@@ -35,7 +52,7 @@ namespace Chy.SQLite
         private static string CreateConnectionString()
         {
             SQLiteConnectionStringBuilder connectionString = new SQLiteConnectionStringBuilder();
-            connectionString.DataSource = @"data/ScriptHelper.db";
+            connectionString.DataSource = @"data/ScriptHelper.sqlite";
 
             string conStr = connectionString.ToString();
             return conStr;
