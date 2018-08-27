@@ -10,11 +10,16 @@ namespace Chy.SQLite
 {
     public class SQLiteHelper
     {
+        /// <summary>
+        /// 查找SQLite数据文件
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static bool ExistsDBFile(string fileName)
         {
-            string path = System.Environment.CurrentDirectory + @"/Data/";
-            string databaseFileName = path + fileName + ".db";
-            if (File.Exists(@"文件路径"))
+            //string path = System.Environment.CurrentDirectory + @"/Data/";
+            //string databaseFileName = path + fileName + ".db";
+            if (File.Exists(fileName))
             {
                 //存在
                 return true;
@@ -28,20 +33,20 @@ namespace Chy.SQLite
         /// <param name="fileName"></param>
         public static void CreateDBFile(string fileName)
         {
-            string path = System.Environment.CurrentDirectory + @"/Data/";
-            if (!Directory.Exists(path))
+            //string path = System.Environment.CurrentDirectory + @"/Data/";
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+            //string databaseFileName = path + fileName + ".db";
+            if (!File.Exists(fileName))
             {
-                Directory.CreateDirectory(path);
-            }
-            string databaseFileName = path + fileName + ".sqlite";
-            if (!File.Exists(databaseFileName))
-            {
-                SQLiteConnection.CreateFile(databaseFileName);
+                SQLiteConnection.CreateFile(fileName);
             }
             else
             {
-                File.Delete(databaseFileName);
-                SQLiteConnection.CreateFile(databaseFileName);
+                File.Delete(fileName);
+                SQLiteConnection.CreateFile(fileName);
             }
         }
 
@@ -52,7 +57,7 @@ namespace Chy.SQLite
         private static string CreateConnectionString()
         {
             SQLiteConnectionStringBuilder connectionString = new SQLiteConnectionStringBuilder();
-            connectionString.DataSource = @"data/ScriptHelper.sqlite";
+            connectionString.DataSource = @"data/ScriptHelper.db";
 
             string conStr = connectionString.ToString();
             return conStr;
