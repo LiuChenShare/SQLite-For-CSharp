@@ -81,6 +81,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChangeRecord.cs" />
+    <Compile Include="Data\BankContext2.cs" />
     <Compile Include="Data\BankContext.cs" />
     <Compile Include="Data\Base\SQLiteBase.cs" />
     <Compile Include="Data\Entity\RecordInfo.cs" />
@@ -108,6 +109,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\Bank.s3db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

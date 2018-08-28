@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace Project_001_UpdateMoney.Data
     /// <summary>
     /// 金额变化记录
     /// </summary>
+    [Table("Record")]
     public class RecordInfo
     {
         [Key]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,13 @@ namespace Project_001_UpdateMoney.Data
     /// <summary>
     /// 银行账户
     /// </summary>
+    [Table("Vault")]
     public class VaultInfo
     {
-        //[Key]
-        //public Guid Id { get; set; }
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
 
         /// <summary>
         /// 账号
