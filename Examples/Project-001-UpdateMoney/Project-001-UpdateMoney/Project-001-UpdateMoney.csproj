@@ -83,7 +83,8 @@
     <Compile Include="ChangeRecord.cs" />
     <Compile Include="Data\BankContext2.cs" />
     <Compile Include="Data\BankContext.cs" />
-    <Compile Include="Data\Base\SQLiteBase.cs" />
+    <Compile Include="Data\Base\SQLiteBaseForEF.cs" />
+    <Compile Include="Data\Base\SQLiteBaseForHelper.cs" />
     <Compile Include="Data\Entity\RecordInfo.cs" />
     <Compile Include="Data\Entity\VaultInfo.cs" />
     <Compile Include="MainWindow.xaml.cs">

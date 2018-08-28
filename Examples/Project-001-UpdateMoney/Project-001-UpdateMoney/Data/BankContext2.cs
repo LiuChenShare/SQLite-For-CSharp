@@ -14,7 +14,7 @@ namespace Project_001_UpdateMoney.Data
     public class BankContext2 : DbContext
     {
         public BankContext2()
-            : base("SqliteBank")
+            : base("SqliteBank2")
         {
         }
         public DbSet<VaultInfo> VaultInfo { set; get; }

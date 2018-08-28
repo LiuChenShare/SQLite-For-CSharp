@@ -34,32 +34,16 @@ namespace Project_001_UpdateMoney
                 {
                     var info = new VaultInfo();
                     info.Id = Guid.NewGuid();
-                    //info.Id = 0;
                     info.Account = "admin";
                     info.Password = "123";
                     info.Name = "管理员";
                     info.Balance = 10000;
                     context.VaultInfo.Add(info);
                     context.SaveChanges();
-                    var result = context.VaultInfo.Where(x => x.Id == info.Id).SingleOrDefault();
                     var list = context.VaultInfo.ToList();
+                    var result = context.VaultInfo.Where(x => x.Id == info.Id).SingleOrDefault();
 
-                    //    context.Database.ExecuteSqlCommand(@"CREATE TABLE [Vault] (
-                    //[Id] BLOB  NOT NULL PRIMARY KEY,
-                    //[Account] TEXT  NOT NULL,
-                    //[Password] TEXT  NOT NULL,
-                    //[Name] TEXT  NOT NULL,
-                    //[Balance] FLOAT DEFAULT '0' NOT NULL )");
-                    //    context.Database.ExecuteSqlCommand(@"CREATE TABLE [Record] (
-                    //[Id] BLOB  PRIMARY KEY NOT NULL,
-                    //[AccountId] BLOB  NOT NULL,
-                    //[Amount] FLOAT  NOT NULL,
-                    //[Balance] FLOAT  NOT NULL,
-                    //[Remark] TEXT  NULL,
-                    //[CreateTime] DATE  NOT NULL )");
-                    //    var list = context.VaultInfo.ToList();
-
-                    MessageBoxResult result = MessageBox.Show(list.Count().ToString(), "这是标题", MessageBoxButton.YesNo);
+                    MessageBoxResult mes = MessageBox.Show(list.Count().ToString(), "这是标题", MessageBoxButton.YesNo);
                 }
             }
             catch (Exception ex)

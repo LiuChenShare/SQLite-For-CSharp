@@ -13,5 +13,20 @@ namespace Project_001_UpdateMoney
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// 重写OnStartup
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            ///
+            //string connectionString = AppDomain.CurrentDomain.BaseDirectory + @"Data\Bank.s3db";
+            string connectionString = Environment.CurrentDirectory + @"\Data\Bank.s3db";
+            AppDomain.CurrentDomain.SetData("ConnectionDirectory", connectionString);
+
+            Data.SQLiteBaseForEF.ExistsDBFile(connectionString);
+
+            base.OnStartup(e);
+        }
     }
 }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Project_001_UpdateMoney.Data
 {
     /// <summary>
-    /// SQlite数据基础
+    /// SQlite数据基础(SQLiteHelper)
     /// </summary>
-    public static class SQLiteBase
+    public static class SQLiteBaseForHelper
     {
         /// <summary>
         /// 查找SQLite数据文件
@@ -31,6 +31,7 @@ namespace Project_001_UpdateMoney.Data
             }
             catch (Exception e)
             {
+                var message = e.Message;
                 return false;
             }
         }
@@ -56,6 +57,7 @@ namespace Project_001_UpdateMoney.Data
             }
             catch (Exception e)
             {
+                var message = e.Message;
                 return false;
             }
         }
