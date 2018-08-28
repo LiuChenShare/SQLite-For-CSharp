@@ -9,13 +9,13 @@ namespace Project_001_UpdateMoney.Data
 {
     /// <summary>
     /// 连接银行数据库
-    /// （数据库是在我的文档中）
+    /// （数据库是在C:\Users\admin中）
     /// </summary>
     public class BankContext : DbContext
     {
         public BankContext()
             //: base("SqliteBank")
-            : base(System.Environment.CurrentDirectory + @"/Data/Record1.db")
+            : base(System.Environment.CurrentDirectory + @"/Data/Bank.db")
         {
         }
         public DbSet<VaultInfo> VaultInfo { set; get; }
