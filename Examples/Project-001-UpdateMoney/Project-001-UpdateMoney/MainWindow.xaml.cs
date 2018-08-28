@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_001_UpdateMoney.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,54 @@ namespace Project_001_UpdateMoney
             InitializeComponent();
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (BankContext context = new BankContext())
+                {
+                    //var info = new VaultInfo();
+                    //info.Id = Guid.NewGuid();
+                    ////info.Id = 0;
+                    //info.Account = "admin";
+                    //info.Password = "123";
+                    //info.Name = "管理员";
+                    //info.Balance = 10000;
+                    //context.VaultInfo.Add(info);
+                    //context.SaveChanges();
+                    //var result = context.VaultInfo.Where(x => x.Id == info.Id).SingleOrDefault();
+                    var list = context.VaultInfo.ToList();
+                    MessageBoxResult result = MessageBox.Show(list.Count().ToString(), "这是标题", MessageBoxButton.YesNo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private string ConvertGuid(Guid gd)
+        {
+            string sgd = gd.ToString().ToUpper();
+            string sVar = "";
+            int i;
+
+            foreach (string sv in new string[] {
+        sgd.Substring(0, 8), sgd.Substring(9, 4), sgd.Substring(14, 4) })
+            {
+                for (i = sv.Length - 2; i >= 0; i -= 2)
+                {
+                    sVar += sv.Substring(i, 2);
+                }
+            }
+
+            sgd = sgd.Substring(19).Replace("-", "");
+            for (i = 0; i < 8; i++)
+            {
+                sVar += sgd.Substring(2 * i, 2);
+            }
+
+            return sVar;
+        }
     }
 }

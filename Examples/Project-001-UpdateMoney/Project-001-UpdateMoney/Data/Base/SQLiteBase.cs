@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_001_UpdateMoney.Data.Base
+namespace Project_001_UpdateMoney.Data
 {
     /// <summary>
     /// SQlite数据基础
@@ -65,6 +65,7 @@ namespace Project_001_UpdateMoney.Data.Base
         /// </summary>
         private static void Create()
         {
+            BankContext context = new BankContext();
             //创建银行账户
             SQLiteHelper.ExecuteNonQuery(@"CREATE TABLE [Vault] (
                 [Id] BLOB  NOT NULL PRIMARY KEY,sss

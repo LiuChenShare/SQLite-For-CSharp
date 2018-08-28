@@ -16,7 +16,7 @@
             <RowDefinition Height="48*" />
             <RowDefinition Height="290*" />
         </Grid.RowDefinitions>
-        <Button Content="存 钱" FontSize="20"/>
+        <Button Content="存 钱" FontSize="20" Click="Button_Click"/>
         <Button Content="取 钱" Grid.Column="1" FontSize="20"/>
         <Label Content="啦啦啦啦啦啦啦" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
         <Label Content="账户金额" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Height="48" Width="107" FontSize="24" FontWeight="Bold"/>
