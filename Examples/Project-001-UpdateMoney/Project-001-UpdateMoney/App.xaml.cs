@@ -20,11 +20,11 @@ namespace Project_001_UpdateMoney
         protected override void OnStartup(StartupEventArgs e)
         {
             ///
-            //string connectionString = AppDomain.CurrentDomain.BaseDirectory + @"Data\Bank.s3db";
-            string connectionString = Environment.CurrentDirectory + @"\Data\Bank.s3db";
-            AppDomain.CurrentDomain.SetData("ConnectionDirectory", connectionString);
+            string connectionString = AppDomain.CurrentDomain.BaseDirectory + @"Data\";
+            //string connectionString = AppDomain.CurrentDomain.BaseDirectory;
+            AppDomain.CurrentDomain.SetData("DataDirectory", connectionString);
 
-            Data.SQLiteBaseForEF.ExistsDBFile(connectionString);
+            Data.SQLiteBaseForEF.ExistsDBFile(connectionString, "Bank.s3db");
 
             base.OnStartup(e);
         }
