@@ -68,7 +68,7 @@ namespace Project_001_UpdateMoney.Data
             BankContext context = new BankContext();
             //创建银行账户
             SQLiteHelper.ExecuteNonQuery(@"CREATE TABLE [Vault] (
-                [Id] BLOB  NOT NULL PRIMARY KEY,sss
+                [Id] BLOB  NOT NULL PRIMARY KEY,
                 [Account] TEXT  NOT NULL,
                 [Password] TEXT  NOT NULL,
                 [Name] TEXT  NOT NULL,
