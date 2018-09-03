@@ -28,6 +28,15 @@ namespace Project_001_UpdateMoney
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            NavigationWindow window = new NavigationWindow();
+
+
+            window.Source = new Uri("SaveMoney.xaml", UriKind.Relative);
+
+
+            window.ShowDialog();
+
+
             try
             {
                 using (BankContext2 context = new BankContext2())
