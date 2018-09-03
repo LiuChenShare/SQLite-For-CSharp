@@ -75,6 +75,9 @@
     <Compile Include="SaveMoney.xaml.cs">
       <DependentUpon>SaveMoney.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WithdrawMoney.xaml.cs">
+      <DependentUpon>WithdrawMoney.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +98,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SaveMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WithdrawMoney.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace Project_001_UpdateMoney
 {
     /// <summary>
-    /// SaveMoney.xaml 的交互逻辑
+    /// WithdrawMoney.xaml 的交互逻辑
     /// </summary>
-    public partial class SaveMoney : Window
+    public partial class WithdrawMoney : Window
     {
-        public SaveMoney()
+        public WithdrawMoney()
         {
             InitializeComponent();
         }
@@ -53,13 +53,19 @@ namespace Project_001_UpdateMoney
                         context.VaultInfo.Add(vaultinfo);
                         context.SaveChanges();
                     }
-                    var recordinfo = new RecordInfo();
-                    recordinfo.Id = Guid.NewGuid();
-                    recordinfo.AccountId = vaultinfo.Id;
-                    recordinfo.Amount = Convert.ToDouble(textbox1.Text);
+                    var recordinfo = new RecordInfo
+                    {
+                        Id = Guid.NewGuid(),
+                        AccountId = vaultinfo.Id,
+                        Amount = Convert.ToDouble(textbox1.Text),
+                        Remark = "存钱",
+                        CreateTime = DateTime.Now
+                    };
                     recordinfo.Balance = vaultinfo.Balance - recordinfo.Amount;
-                    recordinfo.Remark = "存钱";
-                    recordinfo.CreateTime = DateTime.Now;
+                    if (recordinfo.Balance < 0)
+                    {
+                        throw new Exception("余额不足！");
+                    }
                     context.RecordInfo.Add(recordinfo);
                     context.SaveChanges();
                 }
@@ -71,6 +77,7 @@ namespace Project_001_UpdateMoney
             }
 
             MessageBoxResult mes3 = MessageBox.Show("操作成功", "提示", MessageBoxButton.OK);
+            Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
