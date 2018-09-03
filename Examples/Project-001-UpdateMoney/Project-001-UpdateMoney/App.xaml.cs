@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_001_UpdateMoney.Data;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -25,6 +26,26 @@ namespace Project_001_UpdateMoney
             AppDomain.CurrentDomain.SetData("DataDirectory", connectionString);
 
             Data.SQLiteBaseForEF.ExistsDBFile(connectionString, "Bank.s3db");
+
+            //初始一个admin账户
+            using (BankContext2 context = new BankContext2())
+            {
+                var info = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
+
+                if(info == null)
+                {
+                    info = new VaultInfo
+                    {
+                        Id = Guid.NewGuid(),
+                        Account = "admin",
+                        Password = "123",
+                        Name = "管理员",
+                        Balance = 10000
+                    };
+                    context.VaultInfo.Add(info);
+                    context.SaveChanges();
+                }
+            }
 
             base.OnStartup(e);
         }
