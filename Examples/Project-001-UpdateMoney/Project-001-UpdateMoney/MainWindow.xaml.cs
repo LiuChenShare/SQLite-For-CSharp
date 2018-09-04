@@ -28,38 +28,25 @@ namespace Project_001_UpdateMoney
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationWindow window = new NavigationWindow();
+            //NavigationWindow window = new NavigationWindow();
+            //window.Source = new Uri("SaveMoney.xaml", UriKind.Relative);
+            //window.ShowDialog();
 
-
-            window.Source = new Uri("SaveMoney.xaml", UriKind.Relative);
-
-
-            window.ShowDialog();
-
-
-            try
-            {
-                using (BankContext2 context = new BankContext2())
-                {
-                    var info = new VaultInfo();
-                    info.Id = Guid.NewGuid();
-                    info.Account = "admin";
-                    info.Password = "123";
-                    info.Name = "管理员";
-                    info.Balance = 10000;
-                    context.VaultInfo.Add(info);
-                    context.SaveChanges();
-                    var list = context.VaultInfo.ToList();
-                    var result = context.VaultInfo.Where(x => x.Id == info.Id).SingleOrDefault();
-
-                    MessageBoxResult mes = MessageBox.Show(list.Count().ToString(), "这是标题", MessageBoxButton.YesNo);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            SaveMoney isw = new SaveMoney();//这是新窗口的类
+            //isw.Title = "给新页面命名";//这里可以给新窗口重新命名
+            //isw.Show();//无模式，弹出！
+            isw.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            WithdrawMoney isw = new WithdrawMoney();
+            isw.ShowDialog();
+        }
+
+
+
+
 
         private string ConvertGuid(Guid gd)
         {
