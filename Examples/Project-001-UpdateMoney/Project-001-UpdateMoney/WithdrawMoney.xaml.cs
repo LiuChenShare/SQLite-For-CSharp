@@ -58,7 +58,7 @@ namespace Project_001_UpdateMoney
                         Id = Guid.NewGuid(),
                         AccountId = vaultinfo.Id,
                         Amount = Convert.ToDouble(textbox1.Text),
-                        Remark = "存钱",
+                        Remark = "取钱",
                         CreateTime = DateTime.Now
                     };
                     recordinfo.Balance = vaultinfo.Balance - recordinfo.Amount;
@@ -66,7 +66,13 @@ namespace Project_001_UpdateMoney
                     {
                         throw new Exception("余额不足！");
                     }
+                    vaultinfo.Balance = recordinfo.Balance;
+                    //添加
                     context.RecordInfo.Add(recordinfo);
+                    //更新
+                    context.VaultInfo.Attach(vaultinfo);
+                    context.Entry(vaultinfo).State = System.Data.Entity.EntityState.Modified;
+                    //存储到数据库
                     context.SaveChanges();
                 }
             }
