@@ -30,7 +30,7 @@ namespace Project_001_UpdateMoney
         {
             Regex re = new Regex("[^0-9.-]+");
 
-            if (string.IsNullOrEmpty(textbox1.Text) || !re.IsMatch(textbox1.Text))
+            if (string.IsNullOrEmpty(textbox1.Text) || re.IsMatch(textbox1.Text))
             {
                 MessageBoxResult mes = MessageBox.Show("请输入数字", "错误", MessageBoxButton.OK);
             }
@@ -53,14 +53,22 @@ namespace Project_001_UpdateMoney
                         context.VaultInfo.Add(vaultinfo);
                         context.SaveChanges();
                     }
-                    var recordinfo = new RecordInfo();
-                    recordinfo.Id = Guid.NewGuid();
-                    recordinfo.AccountId = vaultinfo.Id;
-                    recordinfo.Amount = Convert.ToDouble(textbox1.Text);
-                    recordinfo.Balance = vaultinfo.Balance - recordinfo.Amount;
-                    recordinfo.Remark = "存钱";
-                    recordinfo.CreateTime = DateTime.Now;
+                    var recordinfo = new RecordInfo
+                    {
+                        Id = Guid.NewGuid(),
+                        AccountId = vaultinfo.Id,
+                        Amount = Convert.ToDouble(textbox1.Text),
+                        Remark = "存钱",
+                        CreateTime = DateTime.Now
+                    };
+                    recordinfo.Balance = vaultinfo.Balance + recordinfo.Amount;
+                    vaultinfo.Balance = recordinfo.Balance;
+                    //添加
                     context.RecordInfo.Add(recordinfo);
+                    //更新
+                    context.VaultInfo.Attach(vaultinfo);
+                    context.Entry(vaultinfo).State = System.Data.Entity.EntityState.Modified;
+                    //存储到数据库
                     context.SaveChanges();
                 }
             }
@@ -71,6 +79,7 @@ namespace Project_001_UpdateMoney
             }
 
             MessageBoxResult mes3 = MessageBox.Show("操作成功", "提示", MessageBoxButton.OK);
+            Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
