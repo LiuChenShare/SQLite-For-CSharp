@@ -18,9 +18,9 @@
         </Grid.RowDefinitions>
         <Button Content="存 钱" FontSize="20" Click="Button_Click"/>
         <Button Content="取 钱" Grid.Column="1" FontSize="20" Click="Button_Click_1"/>
-        <Label Content="啦啦啦啦啦啦啦" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <Label Name="balanceNumber" Content="啦啦啦啦啦啦啦" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
         <Label Content="账户金额" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Height="48" Width="107" FontSize="24" FontWeight="Bold"/>
-        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+        <DataGrid Name="dataGrid" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "时间" Width = "100" Binding="{Binding CreateTime}" />
                 <DataGridTextColumn Header = "类型" Width = "100" Binding="{Binding Type}" />

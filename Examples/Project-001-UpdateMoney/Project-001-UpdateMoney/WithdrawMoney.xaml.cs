@@ -30,7 +30,7 @@ namespace Project_001_UpdateMoney
         {
             Regex re = new Regex("[^0-9.-]+");
 
-            if (string.IsNullOrEmpty(textbox1.Text) || !re.IsMatch(textbox1.Text))
+            if (string.IsNullOrEmpty(textbox1.Text) || re.IsMatch(textbox1.Text))
             {
                 MessageBoxResult mes = MessageBox.Show("请输入数字", "错误", MessageBoxButton.OK);
             }

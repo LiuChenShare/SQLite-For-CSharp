@@ -24,6 +24,8 @@ namespace Project_001_UpdateMoney
         public MainWindow()
         {
             InitializeComponent();
+            //显示余额及历史记录
+            UpdataBalanceNumber();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,16 +38,28 @@ namespace Project_001_UpdateMoney
             //isw.Title = "给新页面命名";//这里可以给新窗口重新命名
             //isw.Show();//无模式，弹出！
             isw.ShowDialog();
+            UpdataBalanceNumber();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             WithdrawMoney isw = new WithdrawMoney();
             isw.ShowDialog();
+            UpdataBalanceNumber();
         }
 
 
-
+        public void UpdataBalanceNumber()
+        {
+            BankContext2 context = new BankContext2();
+            var vaultinfo = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
+            balanceNumber.Content = vaultinfo.Balance;
+            //var list = context.RecordInfo.Where(x => x.AccountId == vaultinfo.Id).OrderBy(x => x.CreateTime).Take(20).ToList();
+            var list = context.RecordInfo.ToList();
+            var a = list.First().AccountId;
+            var list2 = context.RecordInfo.Where(x => x.AccountId == a).ToList();
+            dataGrid.ItemsSource = list;
+        }
 
 
         private string ConvertGuid(Guid gd)
