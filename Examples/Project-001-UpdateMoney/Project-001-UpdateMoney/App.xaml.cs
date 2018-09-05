@@ -25,7 +25,7 @@ namespace Project_001_UpdateMoney
             //string connectionString = AppDomain.CurrentDomain.BaseDirectory;
             AppDomain.CurrentDomain.SetData("DataDirectory", connectionString);
 
-            Data.SQLiteBaseForEF.ExistsDBFile(connectionString, "Bank.s3db");
+            SQLiteBaseForEF.ExistsDBFile(connectionString, "Bank.s3db");
 
             //初始一个admin账户
             using (BankContext2 context = new BankContext2())

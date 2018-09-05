@@ -1,6 +1,7 @@
 ﻿using Project_001_UpdateMoney.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,11 +55,40 @@ namespace Project_001_UpdateMoney
             BankContext2 context = new BankContext2();
             var vaultinfo = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
             balanceNumber.Content = vaultinfo.Balance;
-            //var list = context.RecordInfo.Where(x => x.AccountId == vaultinfo.Id).OrderBy(x => x.CreateTime).Take(20).ToList();
-            var list = context.RecordInfo.ToList();
-            var a = list.First().AccountId;
-            var list2 = context.RecordInfo.Where(x => x.AccountId == a).ToList();
+            var list = context.RecordInfo.Where(x => x.AccountId == vaultinfo.Id).OrderByDescending(x => x.CreateTime).Take(20).ToList();
             dataGrid.ItemsSource = list;
+
+            //创建数据源、绑定数据源
+
+            if (!Window.GetWindow(dataGrid).IsVisible)
+            {
+                Window.GetWindow(dataGrid).Show();
+            }
+            dataGrid.UpdateLayout();
+
+            for (int i = 0; i < this.dataGrid.Items.Count; i++)
+            {
+                DataRowView drv = dataGrid.Items[i] as DataRowView;
+                DataGridRow row = (DataGridRow)this.dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
+                
+                if(list[i].Remark == "取钱")
+                {
+                    row.Background = new SolidColorBrush(Colors.Red);
+                }
+
+                //if (i == 2)
+                //{
+                //    row.Height = 50;
+                //    row.Background = new SolidColorBrush(Colors.Blue);
+                //    drv["id"] = 333;
+                //}
+
+                //if (drv["id"] == DBNull.Value)
+                //{
+                //    row.Background = new SolidColorBrush(Colors.Green);
+                //    row.Height = 8;
+                //}
+            }
         }
 
 
