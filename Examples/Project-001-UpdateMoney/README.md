@@ -6,11 +6,13 @@
 ## 示范价值
 通过EF对SQLite数据库进行：
 
-1. 存钱：insert、update
+1. 建库建表
 
-2. 取钱：insert、update
+2. 存钱：insert、update
 
-3. 查看记录：select、分页
+3. 取钱：insert、update
+
+4. 查看记录：select、分页、排序
 
 ## 功能介绍
 
