@@ -45,6 +45,45 @@ namespace Project_001_UpdateMoney
                     context.VaultInfo.Add(info);
                     context.SaveChanges();
                 }
+
+                //var upList = context.RecordInfo.Where(x => x.Remark == "测试").ToList();
+                //for (int i = 0; i < 5; i++)
+                //{
+                //    var recordinfo = new RecordInfo
+                //    {
+                //        Id = Guid.Empty,
+                //        AccountId = Guid.Empty,
+                //        Amount = 0,
+                //        Remark = "测试",
+                //        CreateTime = DateTime.Now
+                //    };
+                //    upList.Add(recordinfo);
+                //}
+
+                //foreach(var item in upList)
+                //{
+                //    if(item.Id == Guid.Empty)
+                //    {
+                //        item.Id = Guid.NewGuid();
+                //        context.RecordInfo.Add(item);
+                //    }
+                //    else
+                //    {
+                //        item.Remark = "测试";
+                //        context.RecordInfo.Attach(item);
+                //        context.Entry(info).State = System.Data.Entity.EntityState.Modified;
+                //    }
+                //}
+                //context.SaveChanges();
+
+                //var recordinfo = new RecordInfo
+                //{
+                //    Id = Guid.NewGuid(),
+                //    AccountId = Guid.Empty,
+                //    Amount = 1,
+                //    Remark = "存钱",
+                //    CreateTime = DateTime.Now
+                //};
             }
 
             base.OnStartup(e);
