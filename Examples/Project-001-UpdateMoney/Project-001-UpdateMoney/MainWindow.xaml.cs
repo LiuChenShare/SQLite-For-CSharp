@@ -52,7 +52,7 @@ namespace Project_001_UpdateMoney
 
         public void UpdataBalanceNumber()
         {
-            BankContext2 context = new BankContext2();
+            var context = new BankContext2();
             var vaultinfo = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
             balanceNumber.Content = vaultinfo.Balance;
             var list = context.RecordInfo.Where(x => x.AccountId == vaultinfo.Id).OrderByDescending(x => x.CreateTime).Take(20).ToList();

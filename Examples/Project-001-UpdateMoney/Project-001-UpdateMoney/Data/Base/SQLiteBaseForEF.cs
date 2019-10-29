@@ -54,7 +54,7 @@ namespace Project_001_UpdateMoney.Data
         {
             try
             {
-                using (BankContext2 context = new BankContext2())
+                using (var context = new BankContext2())
                 {
                     Directory.CreateDirectory(path);
                     //SQLiteConnection.CreateFile(path + dbName);

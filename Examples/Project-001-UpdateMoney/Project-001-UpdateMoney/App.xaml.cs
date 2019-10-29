@@ -28,7 +28,7 @@ namespace Project_001_UpdateMoney
             SQLiteBaseForEF.ExistsDBFile(connectionString, "Bank.s3db");
 
             //初始一个admin账户
-            using (BankContext2 context = new BankContext2())
+            using (var context = new BankContext2())
             {
                 var info = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
 

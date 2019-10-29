@@ -37,7 +37,7 @@ namespace Project_001_UpdateMoney
 
             try
             {
-                using (BankContext2 context = new BankContext2())
+                using (var context = new BankContext2())
                 {
                     var vaultinfo = context.VaultInfo.Where(x => x.Account == "admin").FirstOrDefault();
                     if (vaultinfo == null)
