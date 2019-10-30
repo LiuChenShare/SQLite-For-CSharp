@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_002_Notepad.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,11 @@ namespace Project_002_Notepad
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NotepadContext notepadContext = ContextManager.Instance.GetNotepadContext();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_002_Notepad.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
@@ -50,13 +51,13 @@ namespace Project_002_Notepad.Data
             {
                 var path = basePath + "notepad.qnmd";
                 var connection = new SQLiteConnection($"Data Source={path};");
-                if (!Directory.Exists(path))
+                if (!File.Exists(path))
                 {
-                    CreateNotepadDBFile(connection);
+                    NotepadCreateDBFile(connection);
                 }
                 else
                 {
-
+                    NotepadUpdateDBFile(connection);
                 }
                 notepadContext = new NotepadContext(connection, false);
             }
@@ -67,38 +68,7 @@ namespace Project_002_Notepad.Data
         /// 创建记事本数据库文件(直接覆盖)
         /// </summary>
         /// <param name="fileName"></param>
-        private void CreateNotepadDBFile(SQLiteConnection connection)
-        {
-            try
-            {
-                using (var context = new NotepadContext(connection, false))
-                {
-                    Directory.CreateDirectory(basePath);
-                    //SQLiteConnection.CreateFile(path + dbName);
-
-                    //创建记事本表
-                    context.Database.ExecuteSqlCommand(@"CREATE TABLE [NotepadInfo] (
-                    [Id] nvarchar  PRIMARY KEY NOT NULL,
-                    [NotepadContent] nvarchar  NOT NULL,
-                    [CreateTime] datetime  NOT NULL );");
-
-                    //创建数据库版本表
-                    context.Database.ExecuteSqlCommand(@"CREATE TABLE [VersionInfo] (
-                    [Id] nvarchar  PRIMARY KEY NOT NULL,
-                    [VersionNumber] INTEGER  NOT NULL,
-                    [CreateTime] datetime  NOT NULL );");
-                }
-            }
-            catch (Exception e)
-            {
-                var message = e.Message;
-            }
-        }
-        /// <summary>
-        /// 更新记事本数据库文件(直接覆盖)
-        /// </summary>
-        /// <param name="fileName"></param>
-        private void UpdateNotepadDBFile(SQLiteConnection connection)
+        private void NotepadCreateDBFile(SQLiteConnection connection)
         {
             try
             {
@@ -118,6 +88,53 @@ namespace Project_002_Notepad.Data
                     [Key] nvarchar  PRIMARY KEY NOT NULL,
                     [VersionNumber] INTEGER  NOT NULL,
                     [CreateTime] datetime  NOT NULL );");
+
+                    var info = new VersionInfo
+                    {
+                        Key = "Default",
+                        VersionNumber = UpdateNotepadScript.Keys.Max(),
+                        CreateTime = DateTime.Now
+                    };
+                    context.VersionInfo.Add(info);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                var message = e.Message;
+            }
+        }
+        /// <summary>
+        /// 更新记事本数据库文件(直接覆盖)
+        /// </summary>
+        /// <param name="fileName"></param>
+        private void NotepadUpdateDBFile(SQLiteConnection connection)
+        {
+            try
+            {
+                using (var context = new NotepadContext(connection, false))
+                {
+                    var defaultVersionInfo = context.VersionInfo.Where(x => x.Key == "Default").FirstOrDefault();
+                    int version = defaultVersionInfo.VersionNumber;
+                    while (true)
+                    {
+                        version = version++;
+                        if (!UpdateNotepadScript.ContainsKey(version))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            //更新表结构
+                            context.Database.ExecuteSqlCommand(@"CREATE TABLE [NotepadInfo] (
+                            [Id] nvarchar  PRIMARY KEY NOT NULL,
+                            [NotepadContent] nvarchar  NOT NULL,
+                            [CreateTime] datetime  NOT NULL );");
+                            //更新版本号
+                            defaultVersionInfo.VersionNumber = version;
+                            context.SaveChanges();
+                        }
+                    }
                 }
             }
             catch (Exception e)
@@ -127,11 +144,18 @@ namespace Project_002_Notepad.Data
         }
         #endregion
 
+        #region 数据库升级脚本
+        /// <summary>
+        /// 记事本数据库升级脚本
+        /// </summary>
+        private readonly Dictionary<int, string> UpdateNotepadScript = new Dictionary<int, string>
+        {
+            { 0, @"--默认" }
+        };
+        #endregion
     }
 
 
-    #region 数据库升级脚本
-    #endregion
 }
 
 
