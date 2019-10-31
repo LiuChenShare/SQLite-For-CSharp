@@ -55,10 +55,7 @@ namespace Project_002_Notepad.Data
                 {
                     NotepadCreateDBFile(connection);
                 }
-                else
-                {
-                    NotepadUpdateDBFile(connection);
-                }
+                NotepadUpdateDBFile(connection);
                 notepadContext = new NotepadContext(connection, false);
             }
             return notepadContext;
