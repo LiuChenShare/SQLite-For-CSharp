@@ -17,5 +17,7 @@ namespace Project_002_Notepad.Data.Entity
         public string NotepadContent { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        public string Test1 { get; set; }
     }
 }

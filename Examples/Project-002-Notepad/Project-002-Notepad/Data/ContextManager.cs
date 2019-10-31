@@ -89,7 +89,7 @@ namespace Project_002_Notepad.Data
                     var info = new VersionInfo
                     {
                         Key = "Default",
-                        VersionNumber = UpdateNotepadScript.Keys.Max(),
+                        VersionNumber = 0,
                         CreateTime = DateTime.Now
                     };
                     context.VersionInfo.Add(info);
