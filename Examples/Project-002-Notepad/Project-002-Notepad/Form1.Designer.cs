@@ -36,7 +36,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 11);
+            this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 35);
             this.button1.TabIndex = 0;
@@ -48,14 +48,14 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(12, 104);
+            this.listBox1.Location = new System.Drawing.Point(12, 114);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(414, 340);
             this.listBox1.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 53);
+            this.textBox1.Location = new System.Drawing.Point(12, 57);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(349, 45);
@@ -63,7 +63,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(368, 53);
+            this.button2.Location = new System.Drawing.Point(368, 59);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(58, 45);
             this.button2.TabIndex = 3;
@@ -75,13 +75,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 450);
+            this.ClientSize = new System.Drawing.Size(437, 468);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "记事本";
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

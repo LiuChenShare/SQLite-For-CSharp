@@ -42,5 +42,13 @@ namespace Project_002_Notepad
             }
             textBox1.Clear();
         }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            listBox1.Width = this.ClientSize.Width - 24;
+            listBox1.Height = this.ClientSize.Height - 4 * 12 - 35 - 45;
+            textBox1.Width = this.ClientSize.Width - 3 * 12 - 58;
+            button2.Location = new Point(this.ClientSize.Width - 12 - 58, button2.Location.Y);
+        }
     }
 }
