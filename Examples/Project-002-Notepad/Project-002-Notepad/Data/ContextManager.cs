@@ -116,20 +116,14 @@ namespace Project_002_Notepad.Data
                 {
                     var defaultVersionInfo = context.VersionInfo.Where(x => x.Key == "Default").FirstOrDefault();
                     int version = defaultVersionInfo.VersionNumber;
-                    while (true)
+                    int versionMax = UpdateNotepadScript.Keys.Max();
+                    while (version< versionMax)
                     {
-                        version = version++;
-                        if (!UpdateNotepadScript.ContainsKey(version))
-                        {
-                            break;
-                        }
-                        else
+                        version += 1;
+                        if (UpdateNotepadScript.ContainsKey(version))
                         {
                             //更新表结构
-                            context.Database.ExecuteSqlCommand(@"CREATE TABLE [NotepadInfo] (
-                            [Id] nvarchar  PRIMARY KEY NOT NULL,
-                            [NotepadContent] nvarchar  NOT NULL,
-                            [CreateTime] datetime  NOT NULL );");
+                            context.Database.ExecuteSqlCommand(UpdateNotepadScript[version]);
                             //更新版本号
                             defaultVersionInfo.VersionNumber = version;
                             context.SaveChanges();
@@ -150,7 +144,9 @@ namespace Project_002_Notepad.Data
         /// </summary>
         private readonly Dictionary<int, string> UpdateNotepadScript = new Dictionary<int, string>
         {
-            { 0, @"--默认" }
+            { 0, @"--默认" },
+            { 1, @"ALTER TABLE [NotepadInfo]
+                ADD Test1 TEXT" },
         };
         #endregion
     }
