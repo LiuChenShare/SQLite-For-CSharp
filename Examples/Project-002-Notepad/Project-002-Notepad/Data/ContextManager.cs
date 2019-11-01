@@ -62,7 +62,7 @@ namespace Project_002_Notepad.Data
         }
         #region 数据库相关
         /// <summary>
-        /// 创建记事本数据库文件(直接覆盖)
+        /// 创建记事本数据库文件
         /// </summary>
         /// <param name="fileName"></param>
         private void NotepadCreateDBFile(SQLiteConnection connection)
@@ -102,7 +102,7 @@ namespace Project_002_Notepad.Data
             }
         }
         /// <summary>
-        /// 更新记事本数据库文件(直接覆盖)
+        /// 更新记事本数据库文件
         /// </summary>
         /// <param name="fileName"></param>
         private void NotepadUpdateDBFile(SQLiteConnection connection)
